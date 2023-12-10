@@ -18,21 +18,7 @@ h5 {
   margin: 0rem !important;
 }
 
-.bugModal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  background-color: var(--dark-color);
-  width: 100%;
-  margin: auto;
-  padding: 2rem;
-  border-radius: 5px;
-  max-width: 500px;
-  animation: fadeIn 0.5s;
-}
+
 
 @keyframes fadeIn {
   from {
@@ -65,21 +51,38 @@ h5 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  max-height: 100vh;
+  height: 100vh;
+  overflow: auto;
 }
 
 .flex-row {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
+  justify-content: start;
+  align-items: start;
+  width: 100% !important;
   height: 100%;
+  padding-right: 1rem;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+  height: max-content;
+  width: fit-content;
+  overflow-y: auto;
+  padding-right: 0.5rem;
 }
 
 .flex-table {
   display: flex;
   flex-direction: column-reverse;
+  height: 100%;
+  justify-content: center;
+  align-items: start;
 }
 
 .space {
@@ -87,18 +90,51 @@ h5 {
   height: 100%;
 }
 
+
+
+.key {
+  height: 2.5rem;
+  width: 4rem;
+  margin-top: 0;
+  background-color: transparent;
+  color: rgb(255, 255, 255);
+  position: relative;
+  overflow: visible;
+  display: flex;
+  justify-content: flex-end;
+  transition: all 0.5s;
+}
+
 .black-key {
+  z-index: 3;
+}
+
+.flex-table:hover .black-key {
   height: 0;
+  margin-top: 0;
   width: 4.5rem;
+  border-radius: 0;
   background-color: black;
   color: white !important;
   position: relative;
   overflow: visible;
   display: flex;
   justify-content: flex-end;
+  transition: all 0.5s;
 }
 
 .black-key::after {
+  content: '';
+  position: absolute;
+  background-color: transparent;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  transition: all 0.25s ease-in-out;
+}
+
+.flex-table:hover .black-key::after {
   content: '';
   position: absolute;
   top: 0;
@@ -108,29 +144,47 @@ h5 {
   transform: translateY(-1rem);
   background-color: black;
   border-radius: 0 5px 5px 0;
-  z-index: 1;
+  z-index: 2;
+  transition: all 0.25s ease-in-out;
 }
 
 .black-key button {
-  color: white !important;
-  z-index: 2;
-  height: 2rem;
-  transform: translateY(-1rem);
+  color: rgba(255, 255, 255, 0.874) !important;
+  z-index: 3;
+  transform: translateY(0);
+  padding-left: 70% !important;
+  padding-right: 25% !important;
+  transition: all 0.5s;
 }
 
-.white-key {
-  background-color: white;  
-  color: black !important;
+.flex-table:hover .black-key button {
+  color: rgba(255, 255, 255, 0.874) !important;
+  z-index: 3;
+  height: 2rem;
+  transform: translateY(-1rem);
+  transition: all 0.5s;
+}
+
+
+
+.flex-table:hover .white-key {
   width: 8rem;
-  display: flex;
-  justify-content: flex-end;
-  border-radius: 0 5px 5px 0;
+  height: 2rem;
   margin-top: 5px;
+  border-radius: 0 5px 5px 0;
+  transition: all 0.5s;
+  background-color: white !important;
 }
 
 .white-key button {
-  color: black !important;
+  color: rgba(255, 255, 255, 0.882) !important;
   padding-left: 75% !important;
+  transition: all 0.5s;
+}
+
+.flex-table:hover .white-key button {
+  color: rgba(0, 0, 0, 0.874) !important;
+  transition: all 0.5s;
 }
 
 .white-key:hover {
@@ -139,4 +193,87 @@ h5 {
 
 .black-key:hover::after {
   background-color: rgb(38, 38, 38) !important;
+}
+
+.skey {
+  background-color: orange;
+  color: black !important;
+  width: 4rem;
+  transition: all 0.5s;
+}
+
+.skey.black-key {
+  background-color: orangered;
+  color: black !important;
+  transition: all 0.5s;
+}
+
+.skey button {
+  color: black !important;
+  transition: all 0.5s;
+}
+
+.flex-table:hover .skey {
+  border-radius: 0 5px 5px 0;
+  transition: all 0.5s;
+  background-color: orange !important;
+  color: black !important;
+}
+
+.flex-table:hover .skey button {
+  color: rgba(0, 0, 0, 0.874) !important;
+  transition: all 0.5s;
+}
+
+.flex-table:hover .skey.black-key::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4.5rem;
+  height: 2rem;
+  transform: translateY(-1rem);
+  background-color: orangered;
+  border-radius: 0 5px 5px 0;
+  z-index: 2;
+  transition: all 0.25s ease-in-out;
+}
+
+.skey:hover {
+  background-color: rgb(218, 218, 218) !important;
+}
+
+.skey:hover::after {
+  background-color: rgb(209, 59, 5) !important;
+}
+
+.note-row {
+  width: 100vw !important;
+  height: 2.5rem !important;
+  border-top: 1px solid black;
+  transition: all 0.5s;
+}
+
+.note-table {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+  width: 100vw !important;
+  background-color: red;
+}
+
+.hover.sharp {
+  margin: 0;
+  height: 0 !important;
+  border-top: 0px solid transparent;
+  border: 0;
+  transition: all 0.5s;
+}
+
+.hover {
+  margin: 2.5px 0;
+  height: 2rem !important;
+  transition: all 0.5s;
 }
